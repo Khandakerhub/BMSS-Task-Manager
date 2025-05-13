@@ -57,7 +57,7 @@
 		.gridColumn {
 			display: grid;
 			grid-template-columns: repeat(3, minmax(0, 3fr));
-			gap: 5px;
+			gap: 10px;
 		}
 
 		.addTaskWidth {
@@ -148,6 +148,7 @@
 		/* Style for the task cards */
 		.task-card {
 			background-color: #66ff00;
+			/* Default green */
 			color: #080808;
 			border: 1px solid #6b6a6a;
 			border-radius: 10px;
