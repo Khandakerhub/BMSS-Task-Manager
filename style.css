@@ -1,542 +1,531 @@
 * {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-
-		body {
-			width: 100%;
-			max-width: 1600px;
-			font-family: 'Inter', sans-serif;
-			background-color: #edd8a2;
-		}
-
-		#headerBar {
-			width: 100%;
-			height: 100px;
-			position: fixed;
-			top: 0;
-			background-color: #2d0f05;
-			color: #49baf6;
-			padding: 10px 20px;
-			display: block;
-			align-items: center;
-			box-shadow: 0 1px 3px 0 rgb(75, 74, 74), 0 1px 2px 0 rgba(87, 87, 87, 0.733);
-			margin-bottom: 10px;
-			border-bottom: 3px solid #49baf6;
-			z-index: 10;
-		}
-
-		.logo {
-			width: 70px;
-			height: 70px;
-			margin-right: 10px;
-			margin-top: 5px;
-		}
-
-		.mainHeader {
-			color: #49baf6;
-			font-size: 32px;
-			font-weight: 700;
-			text-align: center;
-			margin-top: -65px;
-		}
-
-		.subHeader {
-			color: #d3d1d1;
-			font-size: 19px;
-			font-weight: 400;
-			text-align: center;
-			margin-top: -5px;
-		}
-
-		#mainContainer {
-			margin: 120px 15px 0 15px;
-		}
-
-		.gridColumn {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(0, 3fr));
-			gap: 10px;
-		}
-
-		.addTaskWidth {
-			min-width: 360px;
-			/*max-width: 800px;*/
-		}
-
-		.zoneCard {
-			background-color: #2d0f05;
-			border-radius: 12px;
-			padding: 5px;
-			box-shadow: 0 1px 3px 0 rgb(136, 135, 135), 0 1px 2px 0 rgba(87, 87, 87, 0.582);
-			margin-bottom: 5px;
-		}
-
-		.addTaskSection {
-			display: flex;
-			justify-content: space-between;
-			gap: 10px;
-			color: #49baf6;
-			font-size: 20px;
-			font-weight: 600;
-			margin: 0 5px 5px 5px;
-			padding-bottom: 5px;
-			border-bottom: 1px solid #616469;
-		}
-
-		.dateTime {
-			font-size: 16px;
-			font-weight: 400;
-			color: #dbdbdb;
-			align-items: end;
-			margin-left: 15px;
-		}
-
-		.fa-clock {
-			margin-left: 5px;
-		}
-
-		.zoneHeader {
-			color: #49baf6;
-			font-size: 20px;
-			font-weight: 600;
-			margin-left: 5px;
-			padding-bottom: 5px;
-			border-bottom: 1px solid #616469;
-		}
-
-		.inputZone {
-			display: flex;
-			justify-content: space-between;
-			gap: 5px;
-			margin-right: 5px;
-			padding-bottom: 5px;
-		}
-
-		/* Style for draggable items */
-		.draggable {
-			cursor: grab;
-			user-select: none;
-			transition: background-color 0.2s ease;
-			position: relative;
-		}
-
-		.draggable:active {
-			cursor: grabbing;
-			background-color: #616469;
-			opacity: 0.7;
-		}
-
-		/* Style for the drop zones */
-		.drop-zone {
-			min-height: 150px;
-			border: 2px dashed #616469;
-			transition: background-color 0.2s ease, border-color 0.2s ease;
-			border-radius: 12px;
-			padding: 5px;
-			margin-top: 5px;
-		}
-
-		/* Style for when an item is dragged over a drop zone */
-		.drag-over {
-			background-color: #5a5a5a;
-			border-color: #49baf6;
-			border-style: solid;
-		}
-
-		/* Style for the task cards */
-		.task-card {
-			background-color: #66ff00;
-			/* Default green */
-			color: #080808;
-			border: 1px solid #6b6a6a;
-			border-radius: 10px;
-			padding: 5px;
-			margin-bottom: 5px;
-			display: flex;
-			flex-direction: column;
-			min-height: 50px;
-			position: relative;
-			transition: background-color 0.3s ease;
-		}
-
-		/* Deadline Soon Style */
-		.task-card.deadline-soon {
-			background-color: #fffc00;
-			/* Yellow */
-		}
-
-		/* Deadline Overdue Style */
-		.task-card.deadline-overdue {
-			background-color: #ff3503;
-			color: #ffffff;
-		}
-
-		/* Ensure timestamp is visible on red background */
-		.task-card.deadline-overdue .task-timestamp {
-			color: #d8d6d6;
-		}
-
-		/* Ensure deadline is visible on red background */
-		.task-card.deadline-overdue .task-deadline {
-			color: #d8d6d6;			
-			border-top: 1px dotted #d8d6d6;
-		}
-
-		.textInput {
-			min-width: 200px;
-			height: 44px;
-			flex: 1;
-			margin-left: 5px;
-			padding: 5px;
-			border-radius: 6px;
-			border: 1px solid #49baf6;
-			background-color: #dfdddd;
-			color: #080808;
-			font-size: 16px;
-			transition: border-color 0.2s ease, background-color 0.2s ease;
-		}
-
-		.textInput:focus {
-			outline: none;
-			border-color: #ff3503;
-			box-shadow: 0 0 0 2px rgba(226, 84, 2, 0.3);
-		}
-
-		.enterAlign {
-			margin-top: 10px;
-			margin-left: 5px;
-			font-size: 16px;
-			font-weight: 600;
-			color: #49baf6;
-		}
-
-		.dueDate {
-			font-size: 16px;
-			font-weight: 600;
-			color: #49baf6;
-			margin-left: 10px;
-		}
-
-		.dateInput {
-			min-width: 80px;
-			max-width: 150px;
-			height: 44px;
-			flex: 1;
-			margin-left: 0;
-			padding: 5px;
-			border-radius: 6px;
-			border: 1px solid #49baf6;
-			background-color: #dfdddd;
-			color: #080808;
-			font-size: 16px;
-			transition: border-color 0.2s ease, background-color 0.2s ease;
-		}
-
-		/* Style for date input placeholder */
-		.dateInput:invalid {
-			color: #6b7280;
-			/* Placeholder-like color */
-		}
-
-		.dateInput::-webkit-calendar-picker-indicator {
-			cursor: pointer;
-			filter: invert(0.7);
-			/* Make calendar icon visible on dark background */
-		}
-
-
-		/* Style for the add task button */
-		.add-task-btn {
-			color: #000000;
-			font-weight: 600;
-			background: #49baf6;
-			border-radius: 6px;
-			padding: 10px 15px;
-			transition: background-color 0.2s ease, transform 0.1s ease;
-			cursor: pointer;
-		}
-
-		.add-task-btn:hover {
-			color: #ffffff;
-			background-color: #49baf6;
-		}
-
-		.add-task-btn:active {
-			transform: scale(0.98);
-		}
-
-		/* Container for text and timestamp inside task card */
-		.task-details {
-			display: flex;
-			flex-direction: column;
-			flex-grow: 1;
-			padding-right: 5px;
-			/* Space for delete button */
-			padding-bottom: 15px;
-			/* Space for timestamp */
-		}
-
-		/* Style for the main task content */
-		.task-content {
-			/* flex-grow: 1; */
-			/* Removed */
-			margin-bottom: 4px;
-			/* Space below task text */
-			font-size: 14px;
-			word-break: break-word;
-		}
-
-		/* New Style for Deadline Text */
-		.task-deadline {
-			display: block;
-			font-weight: 700;
-			font-size: 12px;
-			color: #374151;
-			border-top: 1px dotted #4f5050;
-			margin-right: -5px;
-		}
-
-		/* Style for the timestamp */
-		.task-timestamp {
-			font-size: 10px;
-			color: #353536;
-			margin-top: 5px;
-			align-self: flex-end;
-			position: absolute;
-			bottom: 5px;
-			right: 5px;
-		}
-
-		/* Style for delete button */
-		.delete-btn {
-			font-size: 14px;
-			font-weight: 600;
-			padding: 1px 3px 2px 2px;
-			margin-left: 5px;
-			color: #ff3503;
-			background-color: #9a9b9a;
-			border-radius: 4px;
-			cursor: pointer;
-			transition: color 0.2s ease;
-			position: absolute;
-			bottom: 18px;
-			right: 5px;
-			line-height: 1;
-		}
-
-		.delete-btn:hover {
-			background-color: #ffffff;
-			color: #ff3503;
-		}
-
-		/* --- Modal Styles --- */
-		.modal-overlay {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.6);
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			z-index: 10000;
-			opacity: 0;
-			visibility: hidden;
-			transition: opacity 0.3s ease, visibility 0.3s ease;
-		}
-
-		.modal-overlay.visible {
-			opacity: 1;
-			visibility: visible;
-		}
-
-		.modal-content {
-			background-color: #3a3939;
-			color: #f3f4f6;
-			padding: 25px;
-			border-radius: 12px;
-			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-			text-align: center;
-			max-width: 90%;
-			width: 350px;
-		}
-
-		.modal-content p {
-			margin-bottom: 20px;
-			font-size: 1rem;
-		}
-
-		.modal-buttons {
-			display: flex;
-			justify-content: space-around;
-			/* Default for two buttons */
-			gap: 15px;
-		}
-
-		/* Center single button in validation modal */
-		.modal-buttons.single-button {
-			justify-content: center;
-		}
-
-
-		/* Style for modal buttons (based on add-task-btn) */
-		.modal-button {
-			color: #000000;
-			font-weight: 600;
-			background: #49baf6;
-			border-radius: 6px;
-			padding: 10px 15px;
-			transition: background-color 0.2s ease, transform 0.1s ease;
-			cursor: pointer;
-			flex-grow: 1;
-			/* Allow buttons to grow */
-			max-width: 150px;
-			/* Limit button width */
-		}
-
-		/* Single button takes less space */
-		.modal-buttons.single-button .modal-button {
-			flex-grow: 0;
-		}
-
-
-		.modal-button:hover {
-			color: #ffffff;
-			background-color: #ff0000;
-			/* Delete hover */
-		}
-
-		.modal-button:active {
-			transform: scale(0.98);
-		}
-
-		/* Specific style for cancel button (optional) */
-		.modal-button.cancel {
-			background-color: #49baf6;
-			color: #000000;
-			transition: background-color 0.2s ease, transform 0.1s ease;
-		}
-
-		.modal-button.cancel:hover {
-			background-color: #04a304;
-			/* Cancel hover */
-			color: #ffffff;
-		}
-
-		/* Style for validation modal OK button */
-		.modal-button.validation-ok {
-			background-color: #49baf6;
-			color: #000000;
-		}
-
-		.modal-button.validation-ok:hover {
-			background-color: #04a304;
-			/* Match cancel hover */
-			color: #ffffff;
-		}
-
-
-		/* Confetti canvas positioning */
-		#confetti-canvas {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			pointer-events: none;
-			z-index: 9999;
-		}
-
-		@media (max-width: 768px) {
-			#headerBar {
-				height: 80px;
-			}
-
-			#mainContainer {
-				margin: 90px 10px 0 10px;
-			}
-
-			.gridColumn {
-				display: grid;
-				grid-template-columns: repeat(1, minmax(0, 1fr));
-				gap: 20px;
-			}
-
-			.logo {
-				width: 50px;
-				height: 50px;
-				margin-right: 10px;
-				margin-left: -10px;
-				margin-top: 5px;
-			}
-
-			.mainHeader {
-				color: #49baf6;
-				font-size: 24px;
-				margin-top: -50px;
-			}
-
-			.subHeader {
-				color: #d3d1d1;
-				font-size: 12px;
-				font-weight: 400;
-				text-align: center;
-				margin-top: 0px;
-			}
-
-			.dateTime {
-				font-size: 12px;
-				font-weight: 300;
-				color: #dbdbdb;
-			}
-
-			.enterAlign {
-				margin-top: 6px;
-				margin-left: 5px;
-				margin-bottom: 0;
-			}
-
-			.addTaskSection {
-				font-size: 18px;
-				font-weight: 400;
-			}
-
-			.zoneHeader {
-				font-size: 18px;
-				font-weight: 400;
-			}
-
-			.inputZone {
-				display: flex;
-				flex-direction: column;
-			}
-
-			.textInput {
-				height: 36px;
-			}
-
-			.dateInput {
-				height: 36px;
-				max-width: 100%;
-				margin-left: 5px;
-				align-self: center;
-			}
-
-			.add-task-btn {
-				margin-left: 5px;
-				padding: 5px 20px;
-			}
-
-			.dateAndButton {
-				height: 36px;
-				display: flex;
-				flex-direction: row;
-			}
-
-			.drop-zone {
-				min-height: 120px;
-			}
-		}
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 100%;
+	max-width: 1600px;
+	font-family: 'Inter', sans-serif;
+	background-color: #edd8a2;
+}
+
+#headerBar {
+	width: 100%;
+	height: 100px;
+	position: fixed;
+	top: 0;
+	background-color: #2d0f05;
+	color: #49baf6;
+	padding: 10px 20px;
+	display: block;
+	align-items: center;
+	box-shadow: 0 1px 3px 0 rgb(75, 74, 74), 0 1px 2px 0 rgba(87, 87, 87, 0.733);
+	margin-bottom: 10px;
+	border-bottom: 3px solid #49baf6;
+	z-index: 10;
+}
+
+.logo {
+	width: 70px;
+	height: 70px;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+.mainHeader {
+	color: #49baf6;
+	font-size: 32px;
+	font-weight: 700;
+	text-align: center;
+	margin-top: -65px;
+}
+
+.subHeader {
+	color: #d3d1d1;
+	font-size: 19px;
+	font-weight: 400;
+	text-align: center;
+	margin-top: -5px;
+}
+
+#mainContainer {
+	margin: 120px 15px 0 15px;
+}
+
+.gridColumn {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 3fr));
+	gap: 10px;
+}
+
+.addTaskWidth {
+	min-width: 360px;
+	/*max-width: 800px;*/
+}
+
+.zoneCard {
+	background-color: #2d0f05;
+	border-radius: 12px;
+	padding: 5px;
+	box-shadow: 0 1px 3px 0 rgb(136, 135, 135), 0 1px 2px 0 rgba(87, 87, 87, 0.582);
+	margin-bottom: 5px;
+}
+
+.addTaskSection {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+	color: #49baf6;
+	font-size: 20px;
+	font-weight: 600;
+	margin: 0 5px 5px 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #616469;
+}
+
+.dateTime {
+	font-size: 16px;
+	font-weight: 400;
+	color: #dbdbdb;
+	align-items: end;
+	margin-left: 15px;
+}
+
+.fa-clock {
+	margin-left: 5px;
+}
+
+.zoneHeader {
+	color: #49baf6;
+	font-size: 20px;
+	font-weight: 600;
+	margin-left: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #616469;
+}
+
+.inputZone {
+	display: flex;
+	justify-content: space-between;
+	gap: 5px;
+	margin-right: 5px;
+	padding-bottom: 5px;
+}
+
+/* Style for draggable items */
+.draggable {
+	cursor: grab;
+	-webkit-user-select: none;
+	user-select: none;
+	transition: background-color 0.2s ease;
+	position: relative;
+}
+
+.draggable:active {
+	cursor: grabbing;
+	background-color: #616469;
+	opacity: 0.7;
+}
+
+/* Style for the drop zones */
+.drop-zone {
+	min-height: 150px;
+	border: 2px dashed #616469;
+	transition: background-color 0.2s ease, border-color 0.2s ease;
+	border-radius: 12px;
+	padding: 5px;
+	margin-top: 5px;
+}
+
+/* Style for when an item is dragged over a drop zone */
+.drag-over {
+	background-color: #5a5a5a;
+	border-color: #49baf6;
+	border-style: solid;
+}
+
+/* Style for the task cards */
+.task-card {
+	background-color: #66ff00;
+	/* Default green */
+	color: #080808;
+	border: 1px solid #6b6a6a;
+	border-radius: 10px;
+	padding: 5px;
+	margin-bottom: 5px;
+	display: flex;
+	flex-direction: column;
+	min-height: 50px;
+	position: relative;
+	transition: background-color 0.3s ease;
+}
+
+/* Deadline Soon Style */
+.task-card.deadline-soon {
+	background-color: #fffc00;
+	/* Yellow */
+}
+
+/* Deadline Overdue Style */
+.task-card.deadline-overdue {
+	background-color: #ff3503;
+	color: #ffffff;
+}
+
+/* Ensure timestamp is visible on red background */
+.task-card.deadline-overdue .task-timestamp {
+	color: #d8d6d6;
+}
+
+/* Ensure deadline is visible on red background */
+.task-card.deadline-overdue .task-deadline {
+	color: #d8d6d6;
+	border-top: 1px dotted #d8d6d6;
+}
+
+.textInput {
+	min-width: 200px;
+	height: 44px;
+	flex: 1;
+	margin-left: 5px;
+	padding: 5px;
+	border-radius: 6px;
+	border: 1px solid #49baf6;
+	background-color: #dfdddd;
+	color: #080808;
+	font-size: 16px;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.textInput:focus {
+	outline: none;
+	border-color: #ff3503;
+	box-shadow: 0 0 0 2px rgba(226, 84, 2, 0.3);
+}
+
+.enterAlign {
+	margin-top: 10px;
+	margin-left: 5px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #49baf6;
+}
+
+.dueDate {
+	font-size: 16px;
+	font-weight: 600;
+	color: #49baf6;
+	margin-left: 10px;
+}
+
+.dateInput {
+	min-width: 80px;
+	max-width: 150px;
+	height: 44px;
+	flex: 1;
+	margin-left: 0;
+	padding: 5px;
+	border-radius: 6px;
+	border: 1px solid #49baf6;
+	background-color: #dfdddd;
+	color: #080808;
+	font-size: 16px;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Style for date input placeholder */
+.dateInput:invalid {
+	color: #6b7280;
+}
+
+.dateInput::-webkit-calendar-picker-indicator {
+	cursor: pointer;
+	filter: invert(0.7);
+}
+
+
+/* Style for the add task button */
+.add-task-btn {
+	color: #000000;
+	font-weight: 600;
+	background: #49baf6;
+	border-radius: 6px;
+	padding: 10px 15px;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+	cursor: pointer;
+}
+
+.add-task-btn:hover {
+	color: #ffffff;
+	background-color: #49baf6;
+}
+
+.add-task-btn:active {
+	transform: scale(0.98);
+}
+
+/* Container for text and timestamp inside task card */
+.task-details {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	padding-right: 5px;
+	padding-bottom: 15px;
+}
+
+/* Style for the main task content */
+.task-content {
+	margin-bottom: 4px;
+	font-size: 14px;
+	word-break: break-word;
+}
+
+/* New Style for Deadline Text */
+.task-deadline {
+	display: block;
+	font-weight: 700;
+	font-size: 12px;
+	color: #374151;
+	border-top: 1px dotted #4f5050;
+	margin-right: -5px;
+}
+
+/* Style for the timestamp */
+.task-timestamp {
+	font-size: 10px;
+	color: #353536;
+	margin-top: 5px;
+	align-self: flex-end;
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
+
+/* Style for delete button */
+.delete-btn {
+	font-size: 14px;
+	font-weight: 600;
+	padding: 1px 3px 2px 2px;
+	margin-left: 5px;
+	color: #ff3503;
+	background-color: #9a9b9a;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: color 0.2s ease;
+	position: absolute;
+	bottom: 18px;
+	right: 5px;
+	line-height: 1;
+}
+
+.delete-btn:hover {
+	background-color: #ffffff;
+	color: #ff3503;
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10000;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+.modal-content {
+	background-color: #2d0f05;
+	color: #f3f4f6;
+	padding: 25px;
+	border-radius: 12px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	max-width: 90%;
+	width: 350px;
+}
+
+.modal-content p {
+	margin-bottom: 20px;
+	font-size: 1rem;
+}
+
+.modal-buttons {
+	display: flex;
+	justify-content: space-around;
+	gap: 15px;
+}
+
+/* Center single button in validation modal */
+.modal-buttons.single-button {
+	justify-content: center;
+}
+
+
+/* Style for modal buttons (based on add-task-btn) */
+.modal-button {
+	color: #000000;
+	font-weight: 600;
+	background: #49baf6;
+	border-radius: 6px;
+	padding: 10px 15px;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+	cursor: pointer;
+	flex-grow: 1;
+	max-width: 150px;
+}
+
+/* Single button takes less space */
+.modal-buttons.single-button .modal-button {
+	flex-grow: 0;
+}
+
+.modal-button:hover {
+	color: #ffffff;
+	background-color: #ff0000;
+	/* Delete hover */
+}
+
+.modal-button:active {
+	transform: scale(0.98);
+}
+
+/* Specific style for cancel button (optional) */
+.modal-button.cancel {
+	background-color: #49baf6;
+	color: #000000;
+	transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.modal-button.cancel:hover {
+	background-color: #04a304;
+	/* Cancel hover */
+	color: #ffffff;
+}
+
+/* Style for validation modal OK button */
+.modal-button.validation-ok {
+	background-color: #49baf6;
+	color: #000000;
+}
+
+.modal-button.validation-ok:hover {
+	background-color: #04a304;
+	/* Match cancel hover */
+	color: #ffffff;
+}
+
+/* Confetti canvas positioning */
+#confetti-canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 9999;
+}
+
+@media (max-width: 768px) {
+	#headerBar {
+		height: 80px;
+	}
+
+	#mainContainer {
+		margin: 90px 10px 0 10px;
+	}
+
+	.gridColumn {
+		display: grid;
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+		gap: 20px;
+	}
+
+	.logo {
+		width: 50px;
+		height: 50px;
+		margin-right: 10px;
+		margin-left: -10px;
+		margin-top: 5px;
+	}
+
+	.mainHeader {
+		color: #49baf6;
+		font-size: 24px;
+		margin-top: -50px;
+	}
+
+	.subHeader {
+		color: #d3d1d1;
+		font-size: 12px;
+		font-weight: 400;
+		text-align: center;
+		margin-top: 0px;
+	}
+
+	.dateTime {
+		font-size: 12px;
+		font-weight: 300;
+		color: #dbdbdb;
+	}
+
+	.enterAlign {
+		margin-top: 6px;
+		margin-left: 5px;
+		margin-bottom: 0;
+	}
+
+	.addTaskSection {
+		font-size: 18px;
+		font-weight: 400;
+	}
+
+	.zoneHeader {
+		font-size: 18px;
+		font-weight: 400;
+	}
+
+	.inputZone {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.textInput {
+		height: 36px;
+	}
+
+	.dateInput {
+		height: 36px;
+		max-width: 100%;
+		margin-left: 5px;
+		align-self: center;
+	}
+
+	.add-task-btn {
+		margin-left: 5px;
+		padding: 5px 20px;
+	}
+
+	.dateAndButton {
+		height: 36px;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.drop-zone {
+		min-height: 120px;
+	}
+}
